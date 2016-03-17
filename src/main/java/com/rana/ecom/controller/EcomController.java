@@ -76,7 +76,26 @@ public class EcomController {
 	}
 	
 	
-	
+	/**
+	 * Get product with in date range - Laxmi's Team
+	 * @param cat
+	 * @param skip
+	 * @param limit
+	 * @return
+	 */
+	@RequestMapping(value = "/getproductsbydate/{startDate}/{endDate}/{skip}/{limit}", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody ServiceResponse getProductsByDate(@PathVariable String startDate, @PathVariable String endDate, @PathVariable int skip, @PathVariable int limit){
+		ServiceResponse res = new ServiceResponse();
+		try {
+			List<Product> products = ecomDao.getProductsByDate(startDate,endDate, skip, limit);
+			res.setObj(products);
+			res.setStatus(IEcomConstant.SUCCESS);
+		} catch (Exception e) {
+			res.setStatus(IEcomConstant.FAILED);
+			res.setMsg(e.getMessage());
+		}
+		return res;
+	}
 	
 	
 

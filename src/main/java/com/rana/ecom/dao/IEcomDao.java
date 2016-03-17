@@ -13,4 +13,6 @@ public interface IEcomDao {
 	
 	public int insertProduct(Product product) throws Exception;
 
+	public List<Product> getProductsByDate(String startDate,String endDate, int skip, int limit) throws Exception;
+
 }
